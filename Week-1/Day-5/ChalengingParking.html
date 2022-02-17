@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let jamMasuk = prompt('Masukan Jam Masuk (jam 1-12)');
+
+      let jamKeluar;
+
+      do {
+        jamKeluar = prompt('Masukan Jam Keluar (jam 1-12)');
+      } while (jamKeluar < jamMasuk);
+
+      let lamaParkir = jamKeluar - jamMasuk;
+      let tarifPertama = 3000;
+      let tarifSelanjutnya = 1000;
+
+      let tarif;
+
+      if (jamKeluar <= 4) {
+        tarif = tarifPertama;
+      } else {
+        tarif = tarifPertama + (lamaParkir - 4) * tarifBerikutnya;
+      }
+
+      alert(tarif);
+    </script>
+  </body>
+</html>
+
+<!-- Review -->
+
+<!-- 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Aplikasi Menghitung Tarif Parkir, dengan Ketentuan :
+    //      - Jam Keluar < Jam Masuk ---> User input terus menerus
+    //      - Biaya :
+    //          - 4 jam pertama : Tarif 3000 flat
+    //          - Setelah 4 jam : Tarif 1000 /jam
+
+    // Identifikasi Parameter : Jam Masuk, Jam Keluar, Tarif Awal, Tarif Selanjutnya, Durasi Parkir, Tarif Parkir
+
+    // Step0. Declare data
+    let tarifAwal = 3000
+    let tarifSelanjutnya = 1000
+
+    // Step1. Minta input untuk jam masuk
+    let jamMasuk = Number(prompt('Silahkan Masukan Jam Masuk :')) // 5
+
+    // Step2. Minta input untuk jam keluar
+    // Step3. Filtering agar jam keluar tidak kurang dari jam masuk
+    do{
+        var jamKeluar = Number(prompt('Silahkan Masukan Jam Keluar')) // 3
+    }while(jamKeluar < jamMasuk)
+
+    // let runLooping = false 
+    // while(runLooping === false){
+    //     let jamKeluar = prompt('Silahkan Masukan Jam Keluar')
+        
+    //     if(jamKeluar > jamMasuk){ 
+    //         runLooping = true 
+    //     }
+    // }
+
+    // Step4. Hitung durasi parkir : Jam keluar - Jam masuk
+    let durasiParkir = jamKeluar - jamMasuk
+
+    // Step5. Tarif parkir
+    //          <= 4 jam = Tarif Awal (3000)
+    //          > 4 jam = Tarif Awal + ((Durasi Parkir - 4) * 1000)
+    let tarifParkir = 0 
+    if(durasiParkir <= 4){
+        tarifParkir = tarifAwal
+    }else{
+        tarifParkir = tarifAwal + ((durasiParkir - 4) * tarifSelanjutnya)
+    }
+
+    // Step6. Tampilkan dalam bentuk alert untuk tarif parkirnya
+    alert(`
+        Lama Parkir = ${durasiParkir} Jam \n
+        Total Tarif = ${tarifParkir}
+    `)
+</script>
+</body>
+</html> 
+-->

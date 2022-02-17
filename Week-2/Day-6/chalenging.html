@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+            function prompt(PeriksaJawaban(jawaban)) {
+        let kunciJawaban = ['A', 'B', 'C', 'A', 'D'];
+        let nilai = 0;
+
+        for (let i = 0; i < jawaban.length; i++) {
+          if (jawaban[i] === '') {
+            nilai += 0;
+          } else if (jawaban[i] === kunciJawaban[i]) {
+            nilai += 3;
+          } else if (jawaban[i] !== kunciJawaban[i]) {
+            nilai--;
+          }
+        }
+
+        console.log(nilai);
+      }
+    </script>
+  </body>
+</html>
+
+<!-- 
+  <script>
+    // CHALENGING
+    // Ex. Buatlah program untuk mengkoreksi jawaban student dengan kunci jawaban yang ada, dengan ketentuan :
+    //          - Jawaban benar, poin +3
+    //          - Jawaban salah, poin -1
+    //          - Jawaban kosong, poin +0
+    //          - Kunci Jawaban = ['A', 'C', 'D', 'C', 'D']
+
+    // Identifikasi data : kunciJawaban, jawabanSiswa, poinBenar, poinSalah, poinKosong, totalPoin
+    // Step0. Declare semua data
+    let kunciJawaban = ['A', 'C', 'D', 'C', 'D', 'A']
+    let jawabanSiswa = []
+    let poinBenar = 3
+    let poinSalah = 1
+    let poinKosong = 0
+    let totalPoin = 0
+
+    // Step1. Meminta jawaban dari siswa
+    for(let i=0; i<kunciJawaban.length; i++){
+        let jawaban = prompt('Silahkan Masukan Jawaban Anda : ') // A, B
+        jawabanSiswa.push(jawaban)
+    }
+
+    console.log(jawabanSiswa)
+
+    // Step2. Koreksi setiap jawaban siswa dengan kunci jawaban
+    // Kunci Jawaban ['A', 'C', 'D', 'C', 'D', 'A']
+    // Jawaban Siswa ['A', 'B', 'C', 'D', 'E', 'A']
+    for(let i=0; i<kunciJawaban.length; i++){
+        if(kunciJawaban[i] === jawabanSiswa[i]){
+            totalPoin += poinBenar
+        }else if(kunciJawaban[i] !== jawabanSiswa[i]){
+            totalPoin -= poinSalah
+        }else if(jawabanSiswa[i] === ''){
+            totalPoin += poinKosong
+        }
+    }
+
+    // i=0, true, totalPoin = 3
+    // i=1, true, totalPoin = 2
+    // i=2,
+    // ...
+    // ...
+    // ...
+
+    // Step3. Tampilkan hasil poinnya
+    alert(`
+        Jumlah Soal = ${kunciJawaban.length} \n
+        Total Poin = ${totalPoin}
+    `)
+</script>
+ -->

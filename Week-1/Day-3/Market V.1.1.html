@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market_V_1.1.1</title>
+  </head>
+  <body>
+    <script>
+      // Membuat Promt
+      let apel = prompt('Harga apel = 10000 \nBerapa apel yang  akan anda beli ?  ');
+      let anggur = prompt('Harga anggur = 15000 \nBerapa anggur yang  akan anda beli ?  ');
+      let jeruk = prompt('Harga jeruk = 20000 \nBerapa jeruk yang  akan anda beli ?  ');
+      // Menghitung total inputan dengan harga
+      let totalApel = apel * 10000;
+      let totalAnggur = anggur * 15000;
+      let totalJeruk = jeruk * 20000;
+      //  lietrasi string untuk alert
+
+      let literasiStr = `${apel} apel x 10000 = ${totalApel}
+${anggur} anggur x 15000 = ${totalAnggur}\n${jeruk} jeruk x 20000 = ${totalJeruk}
+Total belanja anda = ${totalJeruk + totalAnggur + totalApel}`;
+      // Membuat Alert
+      alert(literasiStr);
+    </script>
+  </body>
+</html>
+
+<!-- Review -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Identifikasi data : Price, Qty (Didapatkan dari user), Product
+      // 2. Harga * Qty untuk mencari total per-item
+      // 3. Jumlahkan seluruh total tiap-tiap item untuk menampilkan total belanja
+
+      let product1 = 'Apel';
+      let product2 = 'Jeruk';
+      let product3 = 'Anggur';
+
+      let hargaProduct1 = 10000;
+      let hargaProduct2 = 15000;
+      let hargaProduct3 = 20000;
+
+      let quantityProduct1 = prompt(`Masukan Quantity ${product1}. "Harganya Rp.${hargaProduct1}"`);
+      let quantityProduct2 = prompt(`Masukan Quantity ${product2}. "Harganya Rp.${hargaProduct2}"`);
+
+      let totalProduct1 = quantityProduct1 * hargaProduct1;
+      let totalProduct2 = quantityProduct2 * hargaProduct2;
+      let totalProduct3 = quantityProduct3 * hargaProduct3;
+
+      let grandTotal = totalProduct1 + totalProduct2 + totalProduct3;
+
+      alert(`
+            DAFTAR BELANJA \n
+            ${product1} : ${quantityProduct1} x ${hargaProduct1} = ${totalProduct1} \n
+            ${product2} : ${quantityProduct2} x ${hargaProduct2} = ${totalProduct2} \n
+            ${product3} : ${quantityProduct3} x ${hargaProduct3} = ${totalProduct3} \n
+            GRAND TOTAL : Rp.${grandTotal}
+        `);
+    </script>
+  </body>
+</html> -->

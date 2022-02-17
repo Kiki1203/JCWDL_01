@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator app</title>
+  </head>
+  <body>
+    <!-- 
+        CALCULATOR APPS V.1.1 : Dapat melakukan perhitungan kuadrat
+        - Parameter : angkaInput, hasilPerhitungan
+        1. Step1. Kita minta input sebuah angka dari user
+        2. Step2. Kita hitung hasil kuadratnya
+        3. Step3. Kita tampilkan hasil perhitungannya 
+    -->
+
+    <h1> Calculator Apps V.1.1 </h1>
+
+    <h3>
+        Masukan Angka :
+    </h3>
+    <input type="number" id="angkaInput" placeholder="Masukan Angka">
+    <br>
+    <input type="button" id="buttonHitung" value="Hitung Kuadrat">
+    <br>
+
+    <h3 id="outputHitung">Hasilnya = ....</h3id>
+
+    </body>
+</html>
+
+<script>
+// Button akan menjalankan function PerhitunganKuadrat, ketika diberikan event 'click'
+let button = document.getElementById('buttonHitung')
+    button.addEventListener('click', PerhitunganKuadrat)
+    
+    function PerhitunganKuadrat(){
+        // Dapatkan inputan angka dari user
+        let angka = document.getElementById('angkaInput').value
+        
+        // Hitung hasil kuadratnya
+        let result = angka * angka
+
+        // Tampilkan hasilnya
+        document.getElementById('outputHitung').innerHTML = `Hasilnya = ${result}`
+    }
+</script>

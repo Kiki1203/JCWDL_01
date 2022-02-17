@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator</title>
+  </head>
+  <body>
+    <script>
+      //  Membuat data
+
+      let angkaInput1 = prompt('Silahkan masukan angka !');
+      let angkaInput2 = prompt('Silahkan masukan angka !');
+      let operator = prompt('silahkan masukan operator \n (+,-,x,/)');
+
+      let Number1 = Number(angkaInput1);
+      let Number2 = Number(angkaInput2);
+
+      if (operator === '+') {
+        alert(`${angkaInput1} ${operator} ${angkaInput2} = ${Number1 + Number2}`);
+      } else if (operator === '-') {
+        alert(`${angkaInput1} ${operator} ${angkaInput2} = ${Number1 - Number2}`);
+      } else if (operator === 'x') {
+        alert(`${angkaInput1} ${operator} ${angkaInput2} = ${Number1 * Number2}`);
+      } else if (operator === '/') {
+        alert(`${angkaInput1} ${operator} ${angkaInput2} = ${Number1 / Number2}`);
+      }
+
+      // Review
+      //       // CALCULATOR
+      //       // Parameter : Bilangan1, Bilangan2, Operator, HasilPerhitungan
+      //       // Step1. Minta input Bilangan1
+      //       let bilangan1 = Number(prompt('Masukan Bilangan-1'));
+
+      //       // Step2. Minta input Bilangan2
+      //       let bilangan2 = Number(prompt('Masukan Bilangan-2'));
+
+      //       // Step3. Minta input Operator
+      //       let operator = prompt('Silahkan Masukan Operator (+, -, *, /)');
+
+      //       // Step4. Hitung sesuai dengan operator inputan
+      //       let hasil = 0;
+      //       if (operator === '+') {
+      //         hasil = bilangan1 + bilangan2;
+      //       } else if (operator === '-') {
+      //         hasil = bilangan1 - bilangan2;
+      //       } else if (operator === '*') {
+      //         hasil = bilangan1 * bilangan2;
+      //       } else if (operator === '/') {
+      //         hasil = bilangan1 / bilangan2;
+      //       }
+
+      //       // Step5. Tampilkan hasil perhitungannya
+      //       alert(`
+      //     ${bilangan1} ${operator} ${bilangan2} = ${hasil}
+      // `);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator App</title>
+    <style>
+      body {
+        background-color: navajowhite;
+        font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+      }
+      h1 {
+        text-align: center;
+      }
+      input {
+        font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+        background-color: grey;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>*Calculator Fun*</h1>
+    <fieldset>
+      <legend>
+        <label>Calculator App</label>
+      </legend>
+      <input type="number" id="angka1" name="angkaPertama" placeholder="Masukan angka" />
+      <input type="number" id="angka2" name="angkaKedua" placeholder="Masukan angka" />
+      <br /><br />
+      <br />
+      <input type="button" id="tambah" name="buttonTambah" value="+ Tambah" />
+      <input type="button" id="kurang" name="buttonKurang" value="- Kurang" />
+      <input type="button" id="kali" name="buttonkali" value="x Kali" />
+      <input type="button" id="bagi" name="buttonbagi" value="/ Bagi" />
+      <br />
+      <br />
+      <h2 id="hasil">#</h2>
+    </fieldset>
+  </body>
+</html>
+
+<script>
+  let buttonTambah = document.getElementById('tambah');
+  buttonTambah.addEventListener('click', PerhitunganTambah);
+  let buttonKurang = document.getElementById('kurang');
+  buttonKurang.addEventListener('click', PerhitunganKurang);
+  let buttonKali = document.getElementById('kali');
+  buttonKali.addEventListener('click', PerhitunganKali);
+  let buttonBagi = document.getElementById('bagi');
+  buttonBagi.addEventListener('click', PerhitunganBagi);
+
+  // let angka1 = document.getElementById('angka1').value;
+  // let angka2 = document.getElementById('angka2').value;
+
+  function PerhitunganTambah() {
+    let angka1 = Number(document.getElementById('angka1').value);
+    let angka2 = Number(document.getElementById('angka2').value);
+    let tambah = angka1 + angka2;
+
+    document.getElementById('hasil').innerHTML = `Hasilnya = ${tambah}`;
+  }
+  function PerhitunganKurang() {
+    let angka1 = Number(document.getElementById('angka1').value);
+    let angka2 = Number(document.getElementById('angka2').value);
+    let kurang = angka1 - angka2;
+
+    document.getElementById('hasil').innerHTML = `Hasilnya = ${kurang}`;
+  }
+  function PerhitunganKali() {
+    let angka1 = Number(document.getElementById('angka1').value);
+    let angka2 = Number(document.getElementById('angka2').value);
+    let kali = angka1 * angka2;
+
+    document.getElementById('hasil').innerHTML = `Hasilnya = ${kali}`;
+  }
+  function PerhitunganBagi() {
+    let angka1 = Number(document.getElementById('angka1').value);
+    let angka2 = Number(document.getElementById('angka2').value);
+    let bagi = angka1 / angka2;
+
+    document.getElementById('hasil').innerHTML = `Hasilnya = ${bagi}`;
+  }
+</script>

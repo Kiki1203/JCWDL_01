@@ -1,0 +1,199 @@
+<script>
+  // Product Disimpan Kedalam Array 2 Dimensi
+  let products = [
+    { namaProduct: 'Apel', hargaProduct: 10000, stockProduct: 10 },
+    { namaProduct: 'Jeruk', hargaProduct: 15000, stockProduct: 15 },
+    { namaProduct: 'Anggur', hargaProduct: 20000, stockProduct: 20 },
+  ];
+
+  let carts = [];
+
+  // ### Function ###
+  // ### Function Print Product
+  function PrintProduct() {
+    let printProduct = '';
+    // for(let i=0; i<products.length; i++){
+    //     printProduct += `${i+1}. ${products[i].namaProduct} - Rp. ${products[i].hargaProduct} ( ${products[i].stockProduct} ) \n`
+    // }
+    products.forEach((value, index) => {
+      printProduct += `${index + 1}. ${value.namaProduct} - Rp. ${value.hargaProduct} (${value.stockProduct}) \n`;
+    });
+
+    return printProduct;
+  }
+
+  // ### Function Prompt
+  function OpenPrompt(text) {
+    var dataPrompt = prompt(`Silahkan Masukan ${text} Product :`);
+    return dataPrompt;
+  }
+
+  function PrintCart() {
+    let printCart = '';
+    for (let i = 0; i < carts.length; i++) {
+      printCart += `${i + 1}. ${carts[i].namaProduct} - Rp. ${carts[i].hargaProduct} x ${carts[i].quantityProduct} \n`;
+    }
+
+    return printCart;
+  }
+  // ###
+
+  do {
+    var mainMenu = prompt(`
+            PURWADHIKA MART APPS V.1.6 \n
+            1. Menu Kasir \n
+            2. Menu Customer \n
+            3. Exit
+        `);
+
+    if (mainMenu == 1) {
+      // ### Menu Kasir
+      do {
+        var menu = Number(
+          prompt(`
+                    PURWADHIKA MART KASIR \n
+                    --------------- \n
+                    1. Lihat Product \n
+                    2. Tambah Product \n
+                    3. Hapus Product \n
+                    5. Exit
+                `)
+        );
+
+        if (menu === 1) {
+          // ### 1. Lihat Product
+          alert(PrintProduct());
+        } else if (menu === 2) {
+          // ### 2. Tambah Product
+          let objNewProduct = { namaProduct: '', hargaProduct: 0, stockProduct: 0 };
+          let namaProduct = OpenPrompt('Nama'); // Apel
+          let hargaProduct = OpenPrompt('Harga');
+          let stockProduct = Number(OpenPrompt('Stock'));
+
+          // ### Cek, Apakah Datanya Sudah Ada di Dalam Product?
+          var checkDataExist = false;
+          var indexDataExist = 0;
+          products.forEach((value, index) => {
+            if (namaProduct.toLowerCase() === value.namaProduct.toLowerCase()) {
+              checkDataExist = true;
+              indexDataExist = index;
+            }
+          });
+
+          if (checkDataExist === true) {
+            products[indexDataExist].hargaProduct = hargaProduct;
+            products[indexDataExist].stockProduct = products[indexDataExist].stockProduct + stockProduct;
+          } else {
+            objNewProduct.namaProduct = namaProduct;
+            objNewProduct.hargaProduct = hargaProduct;
+            objNewProduct.stockProduct = stockProduct;
+            products.push(objNewProduct);
+          }
+        } else if (menu === 3) {
+          // ### 3. Hapus Product
+          let productSelected;
+          do {
+            var openLoop = true;
+            productSelected = Number(prompt(`${PrintProduct()} \n Silahkan Pilih Nomor Product yang Ingin Dihapus :`));
+
+            if (productSelected < 1 || productSelected > products.length) {
+              // Apabila data tidak ada, munculkan alert
+              openLoop = true;
+              alert('Product Tidak Ditemukan!');
+            } else {
+              // Apabila datanya ada, kita hapus data yg di select
+              openLoop = false;
+              products.splice([productSelected - 1], 1);
+              alert('Product Berhasil Dihapus!');
+            }
+          } while (openLoop === true);
+        }
+      } while (menu != 5);
+    } else if (mainMenu == 2) {
+      // ### Menu Customer
+      do {
+        var menu = Number(
+          prompt(`
+                    PURWADHIKA MART KASIR \n
+                    --------------- \n
+                    1. Beli Product \n
+                    2. Exit
+                `)
+        );
+
+        if (menu === 1) {
+          // ### 1. Beli product
+          do {
+            var openLoop = true;
+            productSelected = Number(prompt(`${PrintProduct()} \n Silahkan Pilih Nomor Product yang Ingin Dibeli :`));
+
+            if (productSelected < 1 || productSelected - 1 > products.length) {
+              // Apabila data tidak ada, munculkan alert
+              openLoop = true;
+              alert('Product Tidak Ditemukan!');
+            } else {
+              // Apabila datanya ada, kita masukan kedalam cart
+              console.log(products[productSelected - 1]);
+              let quantityProduct;
+              do {
+                quantityProduct = prompt('Silahkan Masukan Quantity Product :');
+                if (quantityProduct > products[productSelected - 1].stock) {
+                  // Apabila quantity > stock
+                  alert('Quantity Melebihi Stock!');
+                } else {
+                  // Apabila quantity <= stock
+                  let newCart = { namaProduct: '', hargaProduct: 0, quantityProduct: 0 };
+                  newCart.namaProduct = products[productSelected - 1].namaProduct;
+                  newCart.hargaProduct = products[productSelected - 1].hargaProduct;
+                  newCart.quantityProduct = quantityProduct;
+                  carts.push(newCart);
+                  alert('Product Berhasil Dimasukan Keranjang!');
+
+                  // ### Tampilkan Data Carts
+                  alert(PrintCart());
+
+                  var confirm = Number(prompt('Silahkan Pilih Menu \n 1. Checkout \n 2. Select Product'));
+
+                  if (confirm == 1) {
+                    // ### Hitung GrandTotal
+                    // [{ namaProduct: 'Apel', hargaProduct: 10000, quantityProduct: 3 }]
+                    let grandTotal = 0;
+                    carts.forEach((value) => {
+                      grandTotal += value.hargaProduct * value.quantityProduct;
+                    });
+
+                    // ### Pembayaran
+                    do {
+                      var uangPembayaran = Number(
+                        prompt(`
+                                                PURWADHIKA MART \n
+                                                --------------- \n
+                                                ${PrintCart()} \n
+                                                --------------- \n
+                                                TOTAL : ${grandTotal} \n
+                                                Silahkan Masukan Uang Pembayaran Anda!
+                                            `)
+                      );
+                    } while (uangPembayaran < grandTotal);
+
+                    // ### Kembalian
+                    alert(`
+                                        PURWADHIKA MART \n
+                                        --------------- \n
+                                        ${PrintCart()} \n
+                                        --------------- \n
+                                        TOTAL : ${grandTotal} \n
+                                        KEMBALIAN : ${uangPembayaran - grandTotal}
+                                        `);
+                    openLoop = false;
+                    carts = [];
+                  }
+                }
+              } while (quantityProduct > products[productSelected - 1].stockProduct);
+            }
+          } while (openLoop === true);
+        }
+      } while (menu != 2);
+    }
+  } while (mainMenu != 3);
+</script>

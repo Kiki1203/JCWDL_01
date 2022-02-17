@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market V-2-0.</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      #tableProduct {
+        width: 75%;
+        border: 1px solid black;
+        text-align: center;
+      }
+      #tableProduct thead {
+        background-color: #bf9270;
+      }
+      #tableProduct td {
+        border-style: dashed;
+        border-collapse: collapse;
+      }
+      input {
+        background-color: #f7ecde;
+      }
+      body {
+        background-color: #fbf8f1;
+        font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Market V-2-0</h1>
+    <fieldset>
+      <legend>
+        <h2>Input data</h2>
+      </legend>
+      <label> Name & Price Product </label>
+      <br />
+      <input type="text" name="productName" placeholder="Enter your product" />
+      <input type="number" name="productPrice" placeholder="Enter your price" />
+      <br /><br />
+      <label> Stock Product </label>
+      <br />
+      <input type="number" name="productStock" placeholder="Enter your stock" />
+      <br /><br />
+      <label> Image URL </label>
+      <br />
+      <input type="text" name="productStock" placeholder="Upload your image" />
+      <br /><br /><br />
+      <input type="button" name="buttonSubmit" value="Submit" />
+      <br />
+    </fieldset>
+    <fieldset>
+      <legend>
+        <h2>Data Product</h2>
+      </legend>
+      <table id="tableProduct">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Laptop Lenovo</td>
+            <td>15000000</td>
+            <td>100</td>
+            <td>
+              <image src="https://img.tek.id/img/library/library-2020-04/images/Dommara/Lenovo%20IdeaPad%20S145%20content.jpg" width="100px" height="100px"></image>
+            </td>
+            <td>
+              <input type="button" name="buttonEdit" value="Edit" />
+              <input type="button" name="buttonDelete" value="Delete" />
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Laptop Asus</td>
+            <td>17000000</td>
+            <td>10</td>
+            <td>
+              <image src="https://dlcdnwebimgs.asus.com/gain/1184b48b-1b10-462f-a4c1-d43852a64163/" width="100px" height="100px"></image>
+            </td>
+            <td>
+              <input type="button" name="buttonEdit" value="Edit" />
+              <input type="button" name="buttonDelete" value="Delete" />
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Laptop MSI</td>
+            <td>18000000</td>
+            <td>15</td>
+            <td>
+              <image src="https://asset.msi.com/global/picture/article/article_147485955657e89224bdee30.jpg" width="100px" height="100px"></image>
+            </td>
+            <td>
+              <input type="button" name="buttonEdit" value="Edit" />
+              <input type="button" name="buttonDelete" value="Delete" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br /><br />
+    </fieldset>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<script>
+  // - Array 2 dimensi
+  let products = [
+    ['Apel', 10000, 10],
+    ['Jeruk', 15000, 15],
+    ['Anggur', 20000, 20],
+  ];
+
+  let carts = [];
+
+  do {
+    var menu = Number(
+      prompt(`
+          PURWADHIKA MART \n
+          --------------- \n
+          1. Lihat Product \n
+          2. Tambah Product \n
+          3. Hapus Product \n
+          4. Beli Product \n
+          5. Exit
+      `)
+    );
+
+    if (menu === 1) {
+      // ### Lihat Product
+      // let products = [
+      //     ['Apel', 10000, 10],
+      //     ['Jeruk', 15000, 15],
+      //     ['Anggur', 20000, 20]
+      // ]
+      let printProduct = '';
+      for (let i = 0; i < products.length; i++) {
+        printProduct += `${i + 1}. ${products[i][0]} - Rp. ${products[i][1]} ( ${products[i][2]} ) \n`;
+      }
+
+      alert(printProduct);
+    } else if (menu === 2) {
+      // ### Tambah Product
+      let arrNewProduct = []; // [] ---> ['Semangka'] ---> ['Semangka', 25000] ---> ['Semangka', 25000, 25]
+
+      let namaProduct = prompt('Silahkan Masukan Nama Product :'); // 'Semangka'
+      arrNewProduct.push(namaProduct);
+
+      let hargaProduct = prompt('Silahkan Masukan Harga Product :'); // 25000
+      arrNewProduct.push(hargaProduct);
+
+      let stockProduct = prompt('Silahkan Masukan Stock Product :'); // 25
+      arrNewProduct.push(stockProduct);
+
+      products.push(arrNewProduct);
+
+      alert('Add Product Success!');
+    } else if (menu === 3) {
+      // ### Hapus Product
+      let printProduct = '';
+      for (let i = 0; i < products.length; i++) {
+        printProduct += `${i + 1}. ${products[i][0]} - Rp. ${products[i][1]} ( ${products[i][2]} ) \n`;
+      }
+
+      let productSelected;
+      do {
+        productSelected = Number(prompt(`${printProduct} \n Silahkan Pilih Nomor Product yang Ingin Dihapus :`));
+
+        if (productSelected < 1 || productSelected - 1 > products.length) {
+          // Apabila data tidak ada, munculkan alert
+          alert('Product Tidak Ditemukan!');
+        } else {
+          // Apabila datanya ada, kita hapus data yg di select
+          products.splice([productSelected - 1], 1);
+          alert('Product Berhasil Dihapus!');
+        }
+      } while (productSelected < 1 || productSelected - 1 > products.length);
+    } else if (menu === 4) {
+      // ### Beli product
+      let printProduct = '';
+      for (let i = 0; i < products.length; i++) {
+        printProduct += `${i + 1}. ${products[i][0]} - Rp. ${products[i][1]} ( ${products[i][2]} ) \n`;
+      }
+
+      do {
+        productSelected = Number(prompt(`${printProduct} \n Silahkan Pilih Nomor Product yang Ingin Dibeli :`));
+
+        if (productSelected < 1 || productSelected - 1 > products.length) {
+          // Apabila data tidak ada, munculkan alert
+          alert('Product Tidak Ditemukan!');
+        } else {
+          // Apabila datanya ada, kita masukan kedalam cart
+
+          let quantityProduct;
+          do {
+            quantityProduct = prompt('Silahkan Masukan Quantity Product :');
+            if (quantityProduct > products[productSelected - 1][2]) {
+              // Apabila quantity > stock
+              alert('Quantity Melebihi Stock!');
+            } else {
+              // Apabila quantity <= stock
+              let newCart = []; // ['Apel', 10000, 3]
+              newCart.push(products[productSelected - 1][0]);
+              newCart.push(products[productSelected - 1][1]);
+              newCart.push(quantityProduct);
+              carts.push(newCart);
+              alert('Product Berhasil Dimasukan Keranjang!');
+
+              // ### Tampilkan Data Carts
+              let printCart = '';
+              for (let i = 0; i < carts.length; i++) {
+                printCart += `${i + 1}. ${carts[i][0]} - Rp. ${carts[i][1]} x ${carts[i][2]} \n`;
+              }
+
+              alert(printCart);
+
+              var confirm = prompt('Silahkan Pilih Menu \n 1. Checkout \n 2. Select Product');
+
+              if (confirm == 1) {
+                // GrandTotal
+                // Pembayaran
+                // Kembalian
+              }
+            }
+          } while (quantityProduct > products[productSelected - 1][2]);
+        }
+      } while (productSelected < 1 || productSelected - 1 > products.length || confirm == 2);
+    }
+  } while (menu != 5);
+</script>

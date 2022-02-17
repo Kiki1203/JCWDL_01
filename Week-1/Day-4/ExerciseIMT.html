@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menghitung IMT</title>
+  </head>
+  <body>
+    <script>
+      let Hitungan = 'IMT';
+
+      let namaSkala1 = 'Massa';
+      let namaSkala2 = 'Tinggi';
+
+      let namaSatuan1 = 'Kg';
+      let namaSatuan2 = 'meter';
+
+      let inputSkala1 = prompt('Silahkan masukan massa(kg)');
+      let inputSkala2 = prompt('Silahkan masukan tinggi(meter)^2');
+
+      let rumus = inputSkala1 / Math.pow(inputSkala2, 2);
+565
+      if (rumus <= 18.5) {
+        alert(`${namaSkala1} ${inputSkala1} ${namaSatuan1} & ${namaSkala2} ${inputSkala2} ${namaSatuan2} \n
+${Hitungan} = ${rumus}, Berat badan anda kurang!`);
+      } else if (rumus >= 18.5 && rumus < 24.9) {
+        alert(`${namaSkala1} ${inputSkala1} ${namaSatuan1} & ${namaSkala2} ${inputSkala2} ${namaSatuan2} \n
+${Hitungan} = ${rumus}, Berat badan ideal!`);
+      } else if (rumus >= 25.0 && rumus < 29.9) {
+        alert(`${namaSkala1} ${inputSkala1} ${namaSatuan1} & ${namaSkala2} ${inputSkala2} ${namaSatuan2} \n
+${Hitungan} = ${rumus}, Berat badan berlebih`);
+      } else if (rumus >= 30.0 && rumus < 39.9) {
+        alert(`${namaSkala1} ${inputSkala1} ${namaSatuan1} & ${namaSkala2} ${inputSkala2} ${namaSatuan2} \n
+${Hitungan} = ${rumus}, Berat badan sangat berlebih`);
+      } else if (rumus > 39.9) {
+        alert(`${namaSkala1} ${inputSkala1} ${namaSatuan1} & ${namaSkala2} ${inputSkala2} ${namaSatuan2} \n
+${Hitungan} = ${rumus}, Obesitas`);
+      }
+
+      // Review 
+//       <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Document</title>
+// </head>
+// <body>
+//     <script>
+//         // IDENTIFIKASI BB IDEAL/TIDAK IDEAL
+//         // Parameter : Berat Badan (Kg), Tinggi (Cm), Rumus IMT
+//         // Step1. Buat prompt untuk mendapatkan data BB dan Tinggi dari user
+//         let beratBadan = prompt('Masukan Berat Badan Anda (Kg)')
+//         let tinggiBadan = prompt('Masukan Tinggi Badan Anda (Cm)')
+
+//         // Step2. Hitung IMT = (Berat Badan / ((Tinggi * 0.01)^2))
+//         let imt = beratBadan / Math.pow((tinggiBadan * 0.01), 2)
+
+//         // Step3. Conditional statement untuk menentukan klasifikasi IMT
+//         let hasilKlasifikasi = ''
+//         if(imt < 18.5){
+//             hasilKlasifikasi += 'BB Anda Kurang'
+//         }else if(imt >= 18.5 && imt <= 24.9){
+//             hasilKlasifikasi += 'BB Anda Ideal'
+//         }else if(imt >= 25 && imt <= 29.9){
+//             hasilKlasifikasi += 'BB Anda Berlebih'
+//         }else if(imt >= 30 && imt <= 39.9){
+//             hasilKlasifikasi += 'BB Anda Sangat Berlebih'
+//         }else{
+//             hasilKlasifikasi += 'Obesitas'
+//         }
+
+//         // Step4. Kita munculkan dalam bentuk alert
+//         alert(`
+//             BB Anda = ${beratBadan} \n
+//             Tinggi Anda = ${tinggiBadan} \n
+//             IMT = ${hasilKlasifikasi}
+//         `)
+    </script>
+</body>
+</html>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let namaProduct1 = 'Apel';
+      let namaProduct2 = 'Anggur';
+      let namaProduct3 = 'Jeruk';
+
+      let hargaProduct1 = 10000;
+      let hargaProduct2 = 15000;
+      let hargaProduct3 = 20000;
+
+      let quantityProduct1 = 10;
+      let quantityProduct2 = 20;
+      let quantityProduct3 = 30;
+
+      let inputUser1 = prompt(`Masukan jumlah ${namaProduct1}, "Harga Rp.${hargaProduct1}"`);
+
+      if (inputUser1 > quantityProduct1) {
+        inputUser1 = quantityProduct1;
+        alert(`Maaf sisa ${namaProduct1} = ${quantityProduct1}`);
+      }
+
+      let inputUser2 = prompt(`Masukan jumlah ${namaProduct2}, "Harga Rp.${hargaProduct2}"`);
+
+      if (inputUser2 > quantityProduct2) {
+        inputUser2 = quantityProduct2;
+        alert(`Maaf sisa ${namaProduct2} = ${quantityProduct2}`);
+      }
+
+      let inputUser3 = prompt(`Masukan jumlah ${namaProduct3}, "Harga Rp.${hargaProduct3}"`);
+
+      if (inputUser3 > quantityProduct3) {
+        inputUser3 = quantityProduct3;
+        alert(`Maaf sisa ${namaProduct3} = ${quantityProduct3}`);
+      }
+
+      let totalProduct1 = inputUser1 * hargaProduct1;
+      let totalProduct2 = inputUser2 * hargaProduct2;
+      let totalProduct3 = inputUser3 * hargaProduct3;
+
+      let grandTotal = totalProduct1 + totalProduct2 + totalProduct3;
+
+      alert(`
+        DAFTAR BELANJA \n
+        ${namaProduct1} : ${inputUser1} X ${hargaProduct1} = Rp.${totalProduct1} \n
+        ${namaProduct2} : ${inputUser2} X ${hargaProduct2} = Rp.${totalProduct2} \n
+        ${namaProduct3} : ${inputUser3} X ${hargaProduct3} = Rp.${totalProduct3} \n
+        TOTAL BELANJA ANDA Rp.${grandTotal}
+        `);
+
+      let uangUser = prompt('Silahkan masukan pembayaran anda');
+      let kembalianUser = uangUser - grandTotal;
+
+      if (uangUser > grandTotal) {
+        alert(`kembalian anda Rp.${kembalianUser}`);
+      } else if (uangUser < grandTotal) {
+        alert('TRANSAKSI ANDA GAGAL !');
+      }
+
+      // Review
+      // Identifikasi Data : Product, Harga, Stock, Quantity, Total Per-item, Grand Total, Uang Pembayaran, Uang Kembalian
+      // Step1. Menerima inputan quantity dari user
+      //          - Apabila quantity > stock, maka quantity = stock
+      // Step2. Cari total per-product
+      // Step3. Hitung grand total
+      // Step4. Menerima input uang pembayaran
+      //          - Apabila nominal < grand total ---> Transaksi batal
+      //          - Apabila nominal >= grand total ---> Transaksi berhasil
+
+      // let product1 = 'Apel';
+      // let product2 = 'Jeruk';
+      // let product3 = 'Anggur';
+
+      // let stockProduct1 = 10;
+      // let stockProduct2 = 20;
+      // let stockProduct3 = 30;
+
+      // let hargaProduct1 = 10000;
+      // let hargaProduct2 = 15000;
+      // let hargaProduct3 = 20000;
+
+      // let quantityProduct1 = prompt(`Masukan Quantity ${product1}. "Harganya Rp.${hargaProduct1}"`); // 100 -> 10
+      // if (quantityProduct1 > stockProduct1) {
+      //   quantityProduct1 = stockProduct1;
+      //   alert('Jumlah Qty Melebihi Stock. Quantity = Stock');
+      // }
+
+      // let quantityProduct2 = prompt(`Masukan Quantity ${product2}. "Harganya Rp.${hargaProduct2}"`);
+      // if (quantityProduct2 > stockProduct2) {
+      //   quantityProduct2 = stockProduct2;
+      //   alert('Jumlah Qty Melebihi Stock. Quantity = Stock');
+      // }
+
+      // let quantityProduct3 = prompt(`Masukan Quantity ${product3}. "Harganya Rp.${hargaProduct3}"`);
+      // if (quantityProduct3 > stockProduct3) {
+      //   quantityProduct3 = stockProduct3;
+      //   alert('Jumlah Qty Melebihi Stock. Quantity = Stock');
+      // }
+
+      // let totalProduct1 = quantityProduct1 * hargaProduct1;
+      // let totalProduct2 = quantityProduct2 * hargaProduct2;
+      // let totalProduct3 = quantityProduct3 * hargaProduct3;
+
+      // let grandTotal = totalProduct1 + totalProduct2 + totalProduct3;
+
+      // alert(`
+      //           DAFTAR BELANJA \n
+      //           ${product1} : ${quantityProduct1} x ${hargaProduct1} = ${totalProduct1} \n
+      //           ${product2} : ${quantityProduct2} x ${hargaProduct2} = ${totalProduct2} \n
+      //           ${product3} : ${quantityProduct3} x ${hargaProduct3} = ${totalProduct3} \n
+      //           GRAND TOTAL : Rp.${grandTotal}
+      //       `);
+
+      // let uangPembayaran = prompt('Silahkan Masukan Uang Pembayaran'); // 50000
+      // if (uangPembayaran < grandTotal) {
+      //   alert('Uang Pembayaran Kurang, Transaksi Dibatalkan!');
+      // } else {
+      //   alert(`
+      //           STRUCK \n
+      //           ${product1} : ${quantityProduct1} x ${hargaProduct1} = ${totalProduct1} \n
+      //           ${product2} : ${quantityProduct2} x ${hargaProduct2} = ${totalProduct2} \n
+      //           ${product3} : ${quantityProduct3} x ${hargaProduct3} = ${totalProduct3} \n
+      //           GRAND TOTAL : Rp.${grandTotal.toLocaleString()}
+      //           PEMBAYARAN  : Rp.${uangPembayaran}
+      //           KEMBALIAN   : Rp.${uangPembayaran - grandTotal}
+      //       `);
+      // }
+    </script>
+  </body>
+</html>

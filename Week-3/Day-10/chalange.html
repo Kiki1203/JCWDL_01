@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chalange</title>
+</head>
+<body>
+    <!-- ODD OR EVEN -->
+<H1>ODD OR EVEN</H1>
+
+<h2>Masukan angka untuk di cek</h2>
+
+<input type="number" id="angkaInput" placeholder="Masukan angka">
+<br>
+<input type="button" id="buttonCek" value="pengecekan">
+<br>
+<h2 id="outputCek"> Hasil Cek [] </h2id>
+
+</body>
+</html>
+
+<script>
+let button = document.getElementById('buttonCek')
+    button.addEventListener('click', even_or_odd)
+
+    function even_or_odd() {
+        let angka = document.getElementById("angkaInput").value
+
+if (angka % 2 === 0) {
+return document.getElementById('outputCek').innerHTML = `Hasil Cek ${angka} = Even`;
+} else if(angka % 2 === 1) {
+     return document.getElementById('outputCek').innerHTML =`Hasil Cek ${angka} = Ood`;
+   }
+
+}
+
+</script>

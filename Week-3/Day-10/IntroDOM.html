@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro DOM</title>
+  </head>
+  <body>
+    <!-- DOM (Document Object Model) -->
+    <!-- Anggap saja HTML sebuah object document -->
+
+    <!-- 
+            Document as structure : - DOCTYPE
+                                    - html
+                                    - head : meta, title
+                                    - body : ..., ..., ...
+                                    
+         -->
+    <!-- 
+             DOM TREE STRUCTURE
+             html => head => meta
+                          => title => 'Intro DOM'
+                  => body => h1 => 'Belajar DOM Purwadhika'
+                          => p => 'Kita sedang belajar structure DOM didalam HTML.
+                               => a => 'Ini merupakan structure document HTML'
+          -->
+    <!-- 
+              Sebelum memodifikasi structure/element/style di HTML, 
+              kita perlu tahu element mana yg ingin dimodifikasi.
+              Untuk mengakses element tersebut, kita bisa kalukan lewat DOM
+           -->
+    <!-- 
+               HTML AS OBJECT IN JAVASCRIPT
+               Di JS untuk mengakses setiap document yg ada di HTML, maka kita gunakan kata kunci : document
+            -->
+    <h1>Belajar DOM Purwadhika 1</h1>
+    <h1>Belajar DOM Purwadhika 2</h1>
+    <h1>Belajar DOM Purwadhika 3</h1>
+    <p>
+      Kita sedang belajar structure DOM di dalam HTML.
+      <a href="https://www.bluekatanasoft.com/wp-content/uploads/document-structure.png"> Ini merupakan structure document HTML. </a>
+    </p>
+
+    <h3 class="classJS">Javascript-1</h3>
+    <h3 class="classJS">Javascript-2</h3>
+    <h3 class="classJS">Javascript-3</h3>
+
+    <h5 id="idH5">Purwadhika School 1</h5>
+  </body>
+</html>
+<script>
+  let doc = document;
+  console.log(doc);
+
+  let head = document.head;
+  console.log(head);
+
+  let body = document.body;
+  console.log(body);
+
+  let hi = document.body.h1;
+  console.log(hi);
+
+  // BODY
+  // Khusus di body, karena tiap element memungkinkan terjadinya duplicate, maka JS tidak menggunakan konsep object secara utuh
+  // Kita tidak bisa menggunakan konsep object secara utuh, maka di body access element nya itu by searching
+  // Syntax : document.getElementBy... (3 Selector: document.getElementByTag, document.getElementById, docuement.getElementsByClass)
+
+  // 1. By TagName ---> Untuk mendapatkan seluruh element tag didalam body
+  let tag = document.getElementsByTagName('h1');
+  console.log(tag); // [h1, h1, h1] ---> [h1-1, h1-2, h1-3]
+  console.log(tag[0]);
+
+  // 2. By Class ---> Untuk mendapatkan class dengan nama yg sama
+  let getclass = document.getElementsByClassName('classJS');
+  console.log(getclass[2]);
+
+  // 3. By Id ---> Untuk mendapatkan element yg spesifik/unik
+  let getId = document.getElementById('idH5');
+  console.log(getId);
+
+  // 4. InnerHTML ---> Untuk mendapatkan value element didalam tag <>...</>
+  let getInnerHTML = document.getElementById('idH5').innerHTML;
+  console.log(getInnerHTML);
+
+  // 5.Value ---> Untuk mendapatkan value dari sebuah inputan
+  //              document.getElementById('namaId').value
+
+  // 6. EventListener ---> Digunakan button untuk melakukan sesuatu
+  //                       button.addEventListener('click', console.log('Hello'))
+
+  // 7. Append ---> Untuk menambahkan sebuah element baru
+  let creatNewElement = document.createElement('h1'); // <h1>...</h1>
+  creatNewElement.textContent = 'ini Dibuat Menggunakan Append';
+  document.body.append(creatNewElement);
+
+  // 8. Styling
+
+  let h5Styling = document.getElementById('idH5');
+  h5Styling.style.color = 'blue';
+  h5Styling.style.fontSize = '100px';
+  h5Styling.style.fontWeight = '100';
+</script>

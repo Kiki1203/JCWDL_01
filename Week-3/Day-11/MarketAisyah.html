@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market V.2.0</title>
+    <style>
+        input{
+            padding: 10px;
+        }
+
+        #tableProducts{
+            width: 75%;
+            border: 1px solid black;
+        }
+
+        #tableProducts thead{
+            background-color: aquamarine;
+            font-size: 16px;
+        }
+
+        #tableProducts tr, td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>
+            <h1>Input Data</h1>
+        </legend>
+        <label>
+            Name & Price Product
+        </label>
+        <br>
+        <select class = "inputProduct">
+            <option name="category" id="category-all" value="all">All</option>
+            <option name="category1" id="category-food" value="food">Food</option>
+            <option name="category2" id="category-electronic" value="electronic">Electronic</option>
+            <option name="category3" id="category-cloth" value="cloth">Cloth</option>
+            <option name="category4" id="category-fruit" value="fruit">Fruit</option>
+        </select>
+        <input type="text" class="inputProduct" placeholder="Enter Your Product Name">
+        <input type="number" class="inputProduct" placeholder="Enter Your Product Price">
+        <br><br>
+        <label>
+            Stock Product
+        </label>
+        <br>
+        <input type="number" class="inputProduct" placeholder="Enter Your Product Stock">
+        <br><br>
+        <label>
+            Image URL
+        </label>
+        <br>
+        <input type="text" class="inputProduct" placeholder="Enter Your Product Image">
+        <br><br><br>
+        <input type="button" id="buttonSubmit" value="Submit">
+        <div id="alertDiv"></div>
+        <br><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            <h1>
+                Data Products
+            </h1>
+        </legend>
+        <table id="tableProducts">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Category</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Kita isi dengan data milik kita -->
+            </tbody>
+        </table>
+    </fieldset>
+</body>
+</html>
+
+<script>
+    // ### Database Products
+    let dataProducts = [
+        { 
+            name: 'Pizza', 
+            category: 'Food',
+            price: 150000,
+            stock: 100,
+            image: 'https://asset.kompas.com/crops/teG8bxBeC9NzNi6opEf38UDC74Q=/0x0:1000x667/750x500/data/photo/2020/09/22/5f69e601777db.jpg' 
+        },
+        {
+            name: 'Asus TUF',
+            category: 'Electronic',
+            price: 12500000,
+            stock: 50, 
+            image: 'https://img.tek.id/img/content/2019/07/23/18559/tuf-gaming-fx505-dt-laptop-gaming-murah-yang-hampir-sempurna-Lx7LHkyT4i.jpg'
+        },
+        {
+            name: 'Hoodie',
+            category: 'Cloth',
+            price: 100000,
+            stock: 25, 
+            image: 'https://cf.shopee.co.id/file/e3296269401bd83ece5a0d2c021699a8'
+        },
+        {
+            name: 'Apel',
+            category: 'Fruit',
+            price: 25000,
+            stock: 25, 
+            image: 'https://statik.tempo.co/data/2019/12/06/id_895343/895343_720.jpg'
+        },
+    ]
+    
+    // ### Show Data Products
+function showDataProducts() {
+    let output = ''
+    dataProducts.forEach((value, index) => {
+        output += `
+            <tr>
+                <td>
+                    ${index+1}
+                </td>
+                <td>
+                    ${value.category}
+                </td>
+                <td>
+                    ${value.name}
+                </td>
+                <td>
+                    ${value.price}
+                </td>
+                <td>
+                    ${value.stock}
+                </td>
+                <td>
+                    <image src="${value.image}" width="100px" />
+                </td>
+                <td id="buttons${index}">
+                    <input type="button" id="editButton${index}" value="Edit" onClick="EditDataProduct(${index})">
+                    <input type="button" id="deleteButton${index}" value="Delete" onClick="DeleteDataProduct(${index})">
+                </td>
+            </tr>
+        `
+    })
+
+    let getTable = document.getElementById('tableProducts').getElementsByTagName('tbody')[0]
+    getTable.innerHTML = output
+}
+showDataProducts()
+
+
+// ### Add Data Product
+document.getElementById('buttonSubmit').addEventListener('click', AddDataProduct)
+function AddDataProduct() {
+    let inputs = document.getElementsByClassName('inputProduct')
+
+    let productCategory = inputs[0].value
+    let productName = inputs[1].value
+    let productPrice = inputs[2].value
+    let productStock = inputs[3].value
+    let productImage = inputs[4].value
+
+    if (productCategory && productName && productPrice && productStock && productImage) {
+        // Push Datanya
+        dataProducts.push(
+            {
+                category: productCategory,
+                name: productName,
+                price: productPrice,
+                stock: productStock,
+                image: productImage
+            }
+        )
+        showDataProducts()
+        inputs[0].value = ''
+        inputs[1].value = ''
+        inputs[2].value = ''
+        inputs[3].value = ''
+        inputs[4].value = ''
+        
+    } else {
+        let alertNew = document.getElementById("alertDiv");
+        let p = document.createElement("p");
+        p.innerText = "Semua Data Harus Diisi!";
+        alertNew.appendChild(p);
+    }
+}
+
+// ### Delete Data Product
+function DeleteDataProduct(index) {
+    let confirmBox = confirm(`
+        Are you sure you want to delete ${dataProducts[index].name}?
+    `)
+
+    if (confirmBox) { // confirmBox === true
+        // Delete Data
+        dataProducts.splice(index, 1)
+        showDataProducts()
+        alert('Product deletion success!')
+    }
+}
+
+// Copy data Product
+let dataProductsCopy = JSON.parse(JSON.stringify(dataProducts))
+
+// ### Edit data product
+function EditDataProduct(index) {
+    dataProducts[index].name = `<input type="text" class="editProduct" placeholder="${dataProducts[index].name}">`
+    dataProducts[index].price = `<input type="number" class="editProduct" placeholder="${dataProducts[index].price}">`
+    dataProducts[index].stock = `<input type="number" class="editProduct" placeholder="${dataProducts[index].stock}">`
+    showDataProducts()
+    document.getElementById(`buttons${index}`).innerHTML = 
+    `<input type="button" id="saveButton${index}" value="Save" onClick="SaveDataProduct(${index})">
+    <input type="button" id="cancelButton${index}" value="Cancel" onClick="CancelEditProduct(${index})">`
+}
+
+// Save data product
+function SaveDataProduct(index) {
+    let inputs = document.getElementsByClassName('editProduct')
+    dataProducts[index].name = inputs[0].value
+    dataProducts[index].price = inputs[1].value
+    dataProducts[index].stock = inputs[2].value
+    document.getElementById(`buttons${index}`).innerHTML =  
+    `<input type="button" id="editButton${index}" value="Edit" onClick="EditDataProduct(${index})"></input>
+    <input type="button" id="deleteButton${index}" value="Delete" onClick="DeleteDataProduct(${index})"></input>`
+    showDataProducts()
+    dataProductsCopy = JSON.parse(JSON.stringify(dataProducts))
+}
+
+// Cancel edit product
+function CancelEditProduct(index) {
+    dataProducts[index].name = dataProductsCopy[index].name
+    dataProducts[index].price = dataProductsCopy[index].price
+    dataProducts[index].stock = dataProductsCopy[index].stock
+    showDataProducts()
+}
+</script>

@@ -1,0 +1,23 @@
+<script>
+  // REMOVE CHARACTER
+  // Parameter : text, characterToRemove, output
+
+  // Step1. Tampilkan prompt untuk meminta text & characterToRemove
+  let text = prompt('Silahkan Masukan Kalimat :');
+  let characterToRemove = prompt('Silahkan Masukan Karakter yang Ingin Dihapus : ');
+
+  // Step2. Remove character yang diinginkan user
+  let output = ''; // P, u, r, w, ... ,
+  // #Lakukan looping di dalam kalimat
+  // #Apabila karakter yang ada di dalam kalimat sama dengan karakter yang ingin di remove, maka tidak kita masukan kedalam output
+  // Text: Purwadhika
+  // CharacterToRemove: a
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] != characterToRemove) {
+      output += text[i];
+    }
+  }
+
+  // Step3. Tampilkan output
+  alert(output);
+</script>

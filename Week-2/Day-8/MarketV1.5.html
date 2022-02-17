@@ -1,0 +1,176 @@
+<script>
+  // Product Disimpan Kedalam Array 2 Dimensi
+  let products = [
+    ['Apel', 10000, 10],
+    ['Jeruk', 15000, 15],
+    ['Anggur', 20000, 20],
+  ];
+
+  let carts = [];
+
+  // ### Function ###
+  // ### Function Print Product
+  function PrintProduct() {
+    let printProduct = '';
+    for (let i = 0; i < products.length; i++) {
+      printProduct += `${i + 1}. ${products[i][0]} - Rp. ${products[i][1]} ( ${products[i][2]} ) \n`;
+    }
+
+    return printProduct;
+  }
+
+  function PrintCart() {
+    let printCart = '';
+    for (let i = 0; i < carts.length; i++) {
+      printCart += `${i + 1}. ${carts[i][0]} - Rp. ${carts[i][1]} x ${carts[i][2]} \n`;
+    }
+
+    return printCart;
+  }
+
+  // ### Function Prompt
+  function OpenPrompt(text) {
+    var dataPrompt = prompt(`Silahkan Masukan ${text} Product :`);
+    return dataPrompt;
+  }
+  // ######
+
+  do {
+    var menu = Number(
+      prompt(`
+          PURWADHIKA MART \n
+          --------------- \n
+          1. Lihat Product \n
+          2. Tambah Product \n
+          3. Hapus Product \n
+          4. Beli Product \n
+          5. Exit
+      `)
+    );
+
+    if (menu === 1) {
+      // ### 1. Lihat Product
+      alert(PrintProduct());
+    } else if (menu === 2) {
+      // ### 2. Tambah Product
+      let arrNewProduct = [];
+      let namaProduct = OpenPrompt('Nama'); // Apel
+      let hargaProduct = OpenPrompt('Harga');
+      let stockProduct = Number(OpenPrompt('Stock'));
+
+      // ### Cek, Apakah Datanya Sudah Ada di Dalam Product?
+      var checkDataExist = false;
+      var indexDataExist = 0;
+      products.forEach((value, index) => {
+        if (namaProduct.toLowerCase() === value[0].toLowerCase()) {
+          checkDataExist = true;
+          indexDataExist = index;
+        }
+      });
+
+      if (checkDataExist === true) {
+        products[indexDataExist][1] = hargaProduct;
+        products[indexDataExist][2] = products[indexDataExist][2] + stockProduct;
+      } else {
+        arrNewProduct.push(namaProduct, hargaProduct, stockProduct);
+        console.log(arrNewProduct);
+        products.push(arrNewProduct);
+      }
+    } else if (menu === 3) {
+      // ### 3. Hapus Product
+      let productSelected;
+      do {
+        var openLoop = true;
+        productSelected = Number(prompt(`${PrintProduct()} \n Silahkan Pilih Nomor Product yang Ingin Dihapus :`));
+
+        if (productSelected < 1 || productSelected > products.length) {
+          // Apabila data tidak ada, munculkan alert
+          openLoop = true;
+          alert('Product Tidak Ditemukan!');
+        } else {
+          // Apabila datanya ada, kita hapus data yg di select
+          openLoop = false;
+          products.splice([productSelected - 1], 1);
+          alert('Product Berhasil Dihapus!');
+        }
+      } while (openLoop === true);
+    } else if (menu === 4) {
+      // ### 4. Beli Product
+      do {
+        var openLoop = true;
+        productSelected = Number(prompt(`${PrintProduct()} \n Silahkan Pilih Nomor Product yang Ingin Dibeli :`));
+
+        if (productSelected < 1 || productSelected - 1 > products.length) {
+          // Apabila data tidak ada, munculkan alert
+          openLoop = true;
+          alert('Product Tidak Ditemukan!');
+        } else {
+          // Apabila datanya ada, kita masukan kedalam cart
+          let quantityProduct;
+          do {
+            quantityProduct = prompt('Silahkan Masukan Quantity Product :');
+            if (quantityProduct > products[productSelected - 1][2]) {
+              // Apabila quantity > stock
+              alert('Quantity Melebihi Stock!');
+            } else {
+              // Apabila quantity <= stock
+              let newCart = []; // ['Apel', 10000, 3]
+              newCart.push(products[productSelected - 1][0]);
+              newCart.push(products[productSelected - 1][1]);
+              newCart.push(quantityProduct);
+              carts.push(newCart);
+              alert('Product Berhasil Dimasukan Keranjang!');
+
+              // ### Tampilkan Data Carts
+              alert(PrintCart());
+
+              var confirm = Number(prompt('Silahkan Pilih Menu \n 1. Checkout \n 2. Select Product'));
+
+              if (confirm == 1) {
+                // ### Hitung GrandTotal
+                // [['Apel', 10000, 3]]
+                let grandTotal = 0;
+                carts.forEach((value) => {
+                  grandTotal += value[1] * value[2];
+                });
+
+                // ### Pembayaran
+                do {
+                  var uangPembayaran = Number(
+                    prompt(`
+                                      PURWADHIKA MART \n
+                                      --------------- \n
+                                      ${PrintCart()} \n
+                                      --------------- \n
+                                      TOTAL : ${grandTotal} \n
+                                      Silahkan Masukan Uang Pembayaran Anda!
+                                  `)
+                  );
+                } while (uangPembayaran < grandTotal);
+
+                // ### Kembalian
+                alert(`
+                              PURWADHIKA MART \n
+                              --------------- \n
+                              ${PrintCart()} \n
+                              --------------- \n
+                              TOTAL : ${grandTotal} \n
+                              KEMBALIAN : ${uangPembayaran - grandTotal}
+                              `);
+                openLoop = false;
+                carts = [];
+              }
+            }
+          } while (quantityProduct > products[productSelected - 1][2]);
+        }
+      } while (openLoop === true);
+    } else if (menu === 5) {
+      // ### 5. Munculkan Alert Terimakasih
+      alert('Thank You for Using Our Apps!');
+    }
+  } while (menu != 5);
+
+  // 1. Masukan kedalam folder
+  // 2. Foldernya RAR/Zip
+  // 3. Format foldernya : Safira_JCWDL001
+</script>

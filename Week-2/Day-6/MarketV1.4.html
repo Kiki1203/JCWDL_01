@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market V1.4</title>
+  </head>
+  <body>
+    <script>
+      // Identifikasi Data
+      // Nama Product, Harga Product, Stock Product, Keranjang
+
+      let product = [
+        ['Apel', 10000, 10],
+        ['Anggur', 15000, 15],
+        ['Jeruk', 20000, 20],
+      ];
+
+      // Menampilkan Keranjang Belanja
+      // Product x Qty = Total Price
+      let Keranjang = [];
+      let menu;
+
+      do {
+        let KeranjangUser = '';
+        if (Keranjang.length !== 0) {
+          for (let i = 0; i < Keranjang.length; i++) {
+            for (let j = 0; j < Keranjang[i].length; j++) {
+              if (j === 0) {
+                KeranjangUser += Keranjang[i][j];
+              } else if (j === 1) {
+                KeranjangUser += ` x ${Keranjang[i][j]} = `;
+              } else if (j === 2) {
+                KeranjangUser += `${Keranjang[i][j]}`;
+              }
+            }
+          }
+        }
+
+        menu = prompt(`${KeranjangUser} \n Pilih Menu \n 1. Lihat Buah \n 2. Tambah Buah \n 3. Menghapus Buah \n 4. Membeli Buah \n 5. Checkout \n 6.Exit`);
+
+        if (parseInt(menu) === 1) {
+          let namaProduct = '';
+
+          for (let i = 0; i < product.length; i++) {
+            for (let j = 0; j < product[i].length; j++) {
+              if (j === 0) {
+                namaProduct += `Buah ${product[i][j]}, `;
+              } else if (j === 1) {
+                namaProduct += `Harga   : Rp.${product[i][j]}, `;
+              } else if (j === 2) {
+                namaProduct += `Stock   : ${product[i][j]}`;
+              }
+            }
+            namaProduct += '\n';
+          }
+
+          alert(namaProduct);
+        } else if (parseInt(menu) === 2) {
+          let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+          let checkNameValidation = true;
+          let newProductName;
+          do {
+            newProductName = prompt('Masukan Nama Buah:');
+
+            for (let i = 0; i < newProductName.length; i++) {
+              if (!alphabet.includes(newProductName[i].toLowerCase())) {
+                checkNameValidation = false;
+                alert('Inputan Tidak Sesuai! Masukan Huruf A-Z / a-z');
+                break;
+              } else {
+                checkNameValidation = true;
+              }
+            }
+          } while (checkNameValidation === false);
+
+          //  Validasi Harga Product
+
+          let checkHargaValidation = true;
+          while (checkHargaValidation === true) {
+            let newProductPrice = prompt('Masukan Harga Buah:');
+
+            for (let i = 0; i < newProductPrice.length; i++) {
+              if (parseInt(newProductPrice[0]) < 1) {
+                alert('Inputan Tidak Sesuai. Masukan Harga Dengan Benar!');
+                break;
+              }
+
+              if (parseInt(newProductPrice[i]) >= 0) {
+                checkHargaValidation = false;
+              } else {
+                checkHargaValidation = true;
+                alert('Inputan Tidak Sesuai. Masukan Harga Dengan Benar!');
+                break;
+              }
+            }
+          }
+
+          let checkStockValidation = true;
+          while (checkStockValidation === true) {
+            let newProductStock = prompt('Masukan Stock Buah:');
+
+            for (let i = 0; i < newProductStock.length; i++) {
+              if (parseInt(newProductStock[0]) < 1) {
+                alert('Inputan Tidak Sesuai. Masukan Stock Dengan Benar!');
+                break;
+              }
+
+              if (parseInt(newProductStock[i]) >= 0) {
+                checkStockValidation = false;
+              } else {
+                checkStockValidation = true;
+                alert('Inputan Tidak Sesuai. Masukan Stock Dengan Benar!');
+                break;
+              }
+            }
+          }
+
+          product.push([newProductName, newProductPrice, newProductStock]);
+        } else if (parseInt(menu) === 3) {
+          let namaProduct = '';
+
+          for (let i = 0; i < product.length; i++) {
+            for (let j = 0; j < product[i].length; j++) {
+              if (j === 0) {
+                namaProduct += `${i + 1} Buah ${product[i][j]}, `;
+              } else if (j === 1) {
+                namaProduct += `Harga   : Rp.${product[i][j]}, `;
+              } else if (j === 2) {
+                namaProduct += `Stock   : ${product[i][j]}`;
+              }
+            }
+            namaProduct += '\n';
+          }
+
+          // Nomor Buah Terdapat di Dalam List Product
+
+          let checkProductValidation = true;
+          do {
+            let productToDelete = prompt(` 
+                    ${namaProduct} \n
+                    Masukan Nomor Buah yang Akan di Hapus
+                    `);
+
+            if (parseInt(productToDelete) > 0) {
+              if (parseInt(productToDelete) - 1 > product.length - 1) {
+                checkProductValidation = false;
+                alert('Nomor Buah Tidak Ditemukan! Masukan Nomor Buah yg Sesuai dengan List Data di Atas');
+              } else {
+                product.splice(productToDelete - 1, 1);
+                checkProductValidation = true;
+                alert('Product Berhasil Dihapus');
+              }
+            } else {
+              checkProductValidation = false;
+            }
+          } while (checkProductValidation === false);
+        } else if (parseInt(menu) === 4) {
+          // Menu Membeli Buah
+          let namaProduct = '';
+
+          for (let i = 0; i < product.length; i++) {
+            for (let j = 0; j < product[i].length; j++) {
+              if (j === 0) {
+                namaProduct += `${i + 1} Buah ${product[i][j]}, `;
+              } else if (j === 1) {
+                namaProduct += `Harga   : Rp.${product[i][j]}, `;
+              } else if (j === 2) {
+                namaProduct += `Stock   : ${product[i][j]}`;
+              }
+            }
+            namaProduct += '\n';
+          }
+
+          let checkProductToBuyValidation = false;
+
+          do {
+            let productToBuy = prompt(` 
+                    ${namaProduct} \n
+                    Masukan Nomor Buah yang Akan di Beli
+                    `);
+
+            if (parseInt(productToBuy) - 1 > product.length - 1) {
+              checkProductValidation = false;
+              alert('Nomor Buah Tidak Ditemukan! Masukan Nomor Buah yg Sesuai dengan List Data di Atas');
+            } else {
+              checkProductToBuyValidation = true;
+              let productPrice = product[productToBuy - 1][1];
+              productToBuy = product[productToBuy - 1][0];
+              let qtyToBuy = prompt('Masukan Quantity yang Akan di Beli');
+
+              Keranjang.push([productToBuy, qtyToBuy, productPrice * qtyToBuy]);
+            }
+          } while (checkProductToBuyValidation === false);
+        } else if (parseInt(menu) === 5) {
+          if (Keranjang.length === 0) {
+            alert('Keranjang Masih Kosong! Silahkan Pilih Product Terlebih Dahulu');
+          } else {
+            let grandTotal = 0;
+            for (let i = 0; i < Keranjang.length; i++) {
+              grandTotal += Keranjang[i][2];
+            }
+
+            let uangDibayarkan = prompt(`${KeranjangUser} \n Grand Total = ${grandTotal} \n Masukan Jumlah Uang Anda:`);
+
+            if (uangDibayarkan < grandTotal) {
+              alert('Transaksi Dibatalkan! Uang Anda Masih Kurang!');
+            } else {
+              Keranjang = [];
+              alert(`
+                            Uang Kembalian = ${uangDibayarkan - grandTotal} \n
+                            Transaksi Dikonfimasi! 
+                        `);
+            }
+          }
+        }
+      } while (parseInt(menu) != 6);
+    </script>
+  </body>
+</html>
